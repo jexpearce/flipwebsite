@@ -318,10 +318,10 @@ const FlipWebsite = () => {
           {/* Taglines */}
           <div className="mb-8 space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              The productivity app that doesn't mess around
+              The free productivity app that doesn't mess around
             </h2>
             <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Face up = distracted. Face down = focused.
+              Face up = distracted. Face down = focused. Real motion tracking. Real results.
             </p>
           </div>
 
@@ -514,7 +514,7 @@ const FlipWebsite = () => {
             <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-teal-400/50">
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
-                  src="/app-profile-screen.png" 
+                  src="/app-profile-correct.png" 
                   alt="FL!P Profile Screen"
                   className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
                 />
@@ -542,7 +542,7 @@ const FlipWebsite = () => {
             <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-blue-400/50">
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
-                  src="/app-leaderboard-screen.png" 
+                  src="/app-university-leaderboard.jpg" 
                   alt="FL!P University Leaderboard"
                   className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
                 />
@@ -654,23 +654,113 @@ const FlipWebsite = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-16 px-6 border-t border-slate-800/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 text-transparent bg-clip-text" style={{
-            background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-          }}>
-            Get in Touch
-          </h2>
-          <p className="text-slate-300 mb-8">Have questions or feedback about FL!P? We'd love to hear from you.</p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm text-slate-400">
-            <a href="mailto:jex@jajajeev" className="hover:text-teal-400 transition-colors">jex@jajajeev</a>
-            <span className="hidden sm:inline">•</span>
-            <a href="mailto:lukenelmes@yahoo.co.uk" className="hover:text-teal-400 transition-colors">lukenelmes@yahoo.co.uk</a>
-            <span className="hidden sm:inline">•</span>
-            <a href="mailto:benarkus@outlook.com" className="hover:text-teal-400 transition-colors">benarkus@outlook.com</a>
+      {/* Contact Section - Redesigned */}
+      <section id="contact" className="py-24 px-6 relative overflow-hidden">
+        {/* Background Gradient */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))',
+          }}
+        />
+        
+        {/* Floating Elements */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-teal-400/20 rounded-full blur-xl animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-24 h-24 bg-purple-400/20 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          {/* Header */}
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text" style={{
+              background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+            }}>
+              Get in Touch
+            </h2>
+            <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              Have questions or feedback about FL!P? We'd love to hear from you.
+            </p>
+          </div>
+
+          {/* Contact Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <a 
+              href="mailto:jex@jajajeev" 
+              className="group relative overflow-hidden rounded-2xl border border-slate-700/30 backdrop-blur-xl p-8 hover:scale-105 transition-all duration-500 hover:border-teal-400/50 hover:shadow-lg hover:shadow-teal-400/20"
+              style={{
+                background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
+              }}
+            >
+              <div className="text-teal-400 text-3xl mb-4">📧</div>
+              <h3 className="text-xl font-bold text-white mb-2">Jex</h3>
+              <p className="text-slate-300 text-sm">jex@jajajeev</p>
+            </a>
+
+            <a 
+              href="mailto:lukenelmes@yahoo.co.uk" 
+              className="group relative overflow-hidden rounded-2xl border border-slate-700/30 backdrop-blur-xl p-8 hover:scale-105 transition-all duration-500 hover:border-purple-400/50 hover:shadow-lg hover:shadow-purple-400/20"
+              style={{
+                background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
+              }}
+            >
+              <div className="text-purple-400 text-3xl mb-4">✉️</div>
+              <h3 className="text-xl font-bold text-white mb-2">Luke</h3>
+              <p className="text-slate-300 text-sm">lukenelmes@yahoo.co.uk</p>
+            </a>
+
+            <a 
+              href="mailto:benarkus@outlook.com" 
+              className="group relative overflow-hidden rounded-2xl border border-slate-700/30 backdrop-blur-xl p-8 hover:scale-105 transition-all duration-500 hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-400/20"
+              style={{
+                background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
+              }}
+            >
+              <div className="text-blue-400 text-3xl mb-4">💌</div>
+              <h3 className="text-xl font-bold text-white mb-2">Ben</h3>
+              <p className="text-slate-300 text-sm">benarkus@outlook.com</p>
+            </a>
+          </div>
+
+          {/* Quick Links */}
+          <div className="flex flex-wrap justify-center gap-6">
+            <a 
+              href="https://jexpearce.github.io/jex/privacypolicy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-4 rounded-2xl border border-slate-700/40 backdrop-blur-xl hover:border-teal-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-teal-400/20"
+              style={{
+                background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
+              }}
+            >
+              <span className="text-slate-300 group-hover:text-teal-400 transition-colors duration-300 font-medium">
+                🔒 Privacy Policy
+              </span>
+            </a>
+
+            <a 
+              href="#"
+              className="group relative px-8 py-4 rounded-2xl border border-slate-700/40 backdrop-blur-xl hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/20"
+              style={{
+                background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
+              }}
+            >
+              <span className="text-slate-300 group-hover:text-purple-400 transition-colors duration-300 font-medium">
+                📋 Terms of Service
+              </span>
+            </a>
+
+            <a 
+              href="#"
+              className="group relative px-8 py-4 rounded-2xl border border-slate-700/40 backdrop-blur-xl hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20"
+              style={{
+                background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
+              }}
+            >
+              <span className="text-slate-300 group-hover:text-blue-400 transition-colors duration-300 font-medium">
+                💬 Support
+              </span>
+            </a>
           </div>
         </div>
       </section>
