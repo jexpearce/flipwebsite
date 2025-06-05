@@ -353,11 +353,20 @@ const FlipWebsite = () => {
             </a>
           </div>
 
-          {/* Quick Stats */}
+          {/* Student-Made Stats */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <StatCard number="40%" label="Productivity Increase" color="text-teal-400" />
-            <StatCard number="10s" label="Flip Back Timer" color="text-purple-400" />
-            <StatCard number="0%" label="Tolerance for BS" color="text-orange-400" />
+            <div className="text-center group cursor-pointer">
+              <div className="text-4xl font-black text-teal-400 mb-3 group-hover:scale-110 transition-transform duration-300">🎓</div>
+              <div className="text-slate-400 text-base font-medium">Student Made</div>
+            </div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-4xl font-black text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300">🏫</div>
+              <div className="text-slate-400 text-base font-medium">Durham University</div>
+            </div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-4xl font-black text-orange-400 mb-3 group-hover:scale-110 transition-transform duration-300">💪</div>
+              <div className="text-slate-400 text-base font-medium">Built for Real Results</div>
+            </div>
           </div>
         </div>
       </section>
@@ -403,7 +412,7 @@ const FlipWebsite = () => {
               background: 'linear-gradient(to right, rgba(30, 41, 59, 0.8), rgba(20, 184, 166, 0.3), rgba(30, 41, 59, 0.8))',
             }}
           >
-            <h3 className="text-2xl font-bold text-teal-300 mb-6">The FL!P Solution</h3>
+            <h3 className="text-2xl font-bold text-teal-300 mb-6">The FL!P Solution: Reclaim your Focus</h3>
             <p className="text-xl text-white leading-relaxed mb-4">
               The team behind FL!P™ set out to change that. How? With one physical movement. And based on one clear rule.
             </p>
@@ -436,7 +445,7 @@ const FlipWebsite = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
             <FeatureCard
-              title="No BS Motion Tracking"
+              title="Real Motion Tracking"
               description="Your phone MUST stay face-down. No cheating, no exceptions."
               gradient="from-red-500/20 to-orange-500/20"
               accent="red"
@@ -678,15 +687,18 @@ const FlipWebsite = () => {
             }}>
               Get in Touch
             </h2>
-            <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-4">
               Have questions or feedback about FL!P? We'd love to hear from you.
+            </p>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Built by Durham University students who understand the struggle of staying focused in the digital age.
             </p>
           </div>
 
           {/* Contact Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <a 
-              href="mailto:jex@jajajeev" 
+              href="mailto:jex@jajajeev.com" 
               className="group relative overflow-hidden rounded-2xl border border-slate-700/30 backdrop-blur-xl p-8 hover:scale-105 transition-all duration-500 hover:border-teal-400/50 hover:shadow-lg hover:shadow-teal-400/20"
               style={{
                 background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
@@ -694,7 +706,7 @@ const FlipWebsite = () => {
             >
               <div className="text-teal-400 text-3xl mb-4">📧</div>
               <h3 className="text-xl font-bold text-white mb-2">Jex</h3>
-              <p className="text-slate-300 text-sm">jex@jajajeev</p>
+              <p className="text-slate-300 text-sm">jex@jajajeev.com</p>
             </a>
 
             <a 
