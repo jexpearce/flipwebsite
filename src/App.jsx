@@ -4,7 +4,18 @@ const FlipWebsite = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [flipComplete, setFlipComplete] = useState(false);
   const [hasFlipped, setHasFlipped] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef(null);
+
+  // Logo animation on page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLogoLoaded(true);
+    }, 300); // Small delay for smooth entrance
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // Check if user has already seen the flip animation
@@ -43,6 +54,14 @@ const FlipWebsite = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [flipComplete, hasFlipped]);
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false); // Close mobile menu when navigating
+    }
+  };
+
   const FloatingOrb = ({ size, top, left, delay, color1, color2 }) => (
     <div 
       className="absolute rounded-full animate-pulse"
@@ -64,40 +83,70 @@ const FlipWebsite = () => {
     <header className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-slate-700/30" style={{
       background: 'rgba(15, 23, 42, 0.8)',
     }}>
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-transparent bg-clip-text" style={{
+      <nav className="max-w-7xl mx-auto px-6 py-2 md:py-4 flex justify-between items-center">
+        <div className="text-xl md:text-2xl font-bold text-transparent bg-clip-text" style={{
           background: 'linear-gradient(to right, #ffffff, #38bdf8)',
           WebkitBackgroundClip: 'text',
           backgroundClip: 'text',
         }}>
           FL!P
         </div>
+        
+        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
-          <a href="#hero" className="text-slate-300 hover:text-teal-400 transition-colors">Home</a>
-          <a href="#features" className="text-slate-300 hover:text-teal-400 transition-colors">Features</a>
-          <a href="#philosophy" className="text-slate-300 hover:text-teal-400 transition-colors">Ethos</a>
-          <a href="#technical" className="text-slate-300 hover:text-teal-400 transition-colors">About</a>
-          <a href="#cta" className="text-slate-300 hover:text-teal-400 transition-colors">Download</a>
+          <button onClick={() => scrollToSection('hero')} className="text-slate-300 hover:text-teal-400 transition-colors">Home</button>
+          <button onClick={() => scrollToSection('features')} className="text-slate-300 hover:text-teal-400 transition-colors">Features</button>
+          <button onClick={() => scrollToSection('philosophy')} className="text-slate-300 hover:text-teal-400 transition-colors">Ethos</button>
+          <button onClick={() => scrollToSection('technical')} className="text-slate-300 hover:text-teal-400 transition-colors">About</button>
+          <button onClick={() => scrollToSection('cta')} className="text-slate-300 hover:text-teal-400 transition-colors">Download</button>
         </div>
-        <button className="md:hidden text-slate-300 hover:text-teal-400">
+        
+        {/* Mobile Hamburger Button */}
+        <button 
+          className="md:hidden text-slate-300 hover:text-teal-400 transition-colors"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            {mobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
           </svg>
         </button>
       </nav>
+      
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden backdrop-blur-xl border-t border-slate-700/30" style={{
+          background: 'rgba(15, 23, 42, 0.95)',
+        }}>
+          <div className="px-6 py-4 space-y-4">
+            <button onClick={() => scrollToSection('hero')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Home</button>
+            <button onClick={() => scrollToSection('features')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Features</button>
+            <button onClick={() => scrollToSection('philosophy')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Ethos</button>
+            <button onClick={() => scrollToSection('technical')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">About</button>
+            <button onClick={() => scrollToSection('cta')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Download</button>
+          </div>
+        </div>
+      )}
     </header>
   );
 
   const FlipLogo = () => {
     const getLetterTransform = (index, delay = 0) => {
-      const letterProgress = Math.max(0, Math.min(1, (scrollProgress - delay) * 3));
-      const translateY = (1 - letterProgress) * 120; // Start further down for more dramatic effect
-      const opacity = letterProgress;
+      if (!logoLoaded) {
+        return {
+          transform: 'translateY(120px)',
+          opacity: 0,
+          transition: 'none',
+        };
+      }
       
       return {
-        transform: `translateY(${translateY}px)`,
-        opacity: opacity,
-        transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+        transform: 'translateY(0px)',
+        opacity: 1,
+        transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`,
       };
     };
 
@@ -116,7 +165,7 @@ const FlipWebsite = () => {
               key={index}
               className="inline-block text-transparent bg-clip-text"
               style={{
-                ...getLetterTransform(index, index * 0.1),
+                ...getLetterTransform(index, index * 0.15),
                 background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
@@ -258,7 +307,7 @@ const FlipWebsite = () => {
       <FloatingOrb size="220px" top="40%" left="5%" delay="1.5s" color1="#06B6D4" color2="#8B5CF6" />
 
       {/* Hero Section with Flip Animation */}
-      <section ref={heroRef} id="hero" className="min-h-screen flex items-center justify-center relative px-6 pt-20">
+      <section ref={heroRef} id="hero" className="min-h-screen flex items-center justify-center relative px-6 pt-16 md:pt-20">
         <div className="max-w-7xl mx-auto text-center">
           {/* Flip Logo */}
           <div className="mb-8">
@@ -282,8 +331,11 @@ const FlipWebsite = () => {
 
           {/* Enhanced CTA Button */}
           <div className="mb-8">
-            <button 
-              className="group relative px-12 py-6 rounded-3xl text-xl font-bold transition-all duration-500 transform hover:scale-110 shadow-2xl"
+            <a 
+              href="https://apps.apple.com/us/app/fl-p/id6741734983"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-block px-12 py-6 rounded-3xl text-xl font-bold transition-all duration-500 transform hover:scale-110 shadow-2xl"
               style={{
                 background: 'linear-gradient(to right, #14b8a6, #2563eb, #7c3aed)',
               }}
@@ -301,7 +353,7 @@ const FlipWebsite = () => {
                   background: 'linear-gradient(to right, #0d9488, #1d4ed8, #6d28d9)',
                 }}
               />
-            </button>
+            </a>
           </div>
 
           {/* Quick Stats */}
@@ -309,6 +361,72 @@ const FlipWebsite = () => {
             <StatCard number="40%" label="Productivity Increase" color="text-teal-400" />
             <StatCard number="10s" label="Flip Back Timer" color="text-purple-400" />
             <StatCard number="0%" label="Tolerance for BS" color="text-orange-400" />
+          </div>
+        </div>
+      </section>
+
+      {/* App Screenshots Section */}
+      <section id="screenshots" className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 
+              className="font-bold mb-8 text-transparent bg-clip-text"
+              style={{
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+              }}
+            >
+              See FL!P in Action
+            </h2>
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+              Real screenshots from the iOS app
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-teal-400/50">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="/app-profile-screen.png" 
+                  alt="FL!P Profile Screen"
+                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Your Profile</h3>
+                <p className="text-slate-300">Track your discipline rank and weekly stats</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-purple-400/50">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="/app-timer-screen.png" 
+                  alt="FL!P Timer Screen"
+                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Set Focus Time</h3>
+                <p className="text-slate-300">Choose your session length and begin</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-blue-400/50">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="/app-timer-screen-2.png" 
+                  alt="FL!P Active Session"
+                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Active Session</h3>
+                <p className="text-slate-300">Phone face-down, focus locked in</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -503,8 +621,11 @@ const FlipWebsite = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button 
-              className="group relative px-10 py-5 rounded-3xl text-lg font-bold transition-all duration-500 transform hover:scale-110 shadow-2xl"
+            <a 
+              href="https://apps.apple.com/us/app/fl-p/id6741734983"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-block px-10 py-5 rounded-3xl text-lg font-bold transition-all duration-500 transform hover:scale-110 shadow-2xl"
               style={{
                 background: 'linear-gradient(to right, #14b8a6, #2563eb, #7c3aed)',
               }}
@@ -516,9 +637,12 @@ const FlipWebsite = () => {
               }}
             >
               <span className="relative z-10">Download FL!P Now</span>
-            </button>
+            </a>
             
-            <button className="px-10 py-5 border-2 border-slate-600 rounded-3xl text-lg font-semibold hover:border-teal-400 hover:text-teal-400 transition-all duration-500 hover:shadow-lg hover:shadow-teal-400/20">
+            <button 
+              onClick={() => scrollToSection('features')}
+              className="px-10 py-5 border-2 border-slate-600 rounded-3xl text-lg font-semibold hover:border-teal-400 hover:text-teal-400 transition-all duration-500 hover:shadow-lg hover:shadow-teal-400/20"
+            >
               Learn More
             </button>
           </div>
@@ -527,6 +651,27 @@ const FlipWebsite = () => {
             <p className="text-slate-400 text-lg">
               iOS exclusive • Free download • No subscriptions • Real results
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 px-6 border-t border-slate-800/50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8 text-transparent bg-clip-text" style={{
+            background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+          }}>
+            Get in Touch
+          </h2>
+          <p className="text-slate-300 mb-8">Have questions or feedback about FL!P? We'd love to hear from you.</p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm text-slate-400">
+            <a href="mailto:jex@jajajeev" className="hover:text-teal-400 transition-colors">jex@jajajeev</a>
+            <span className="hidden sm:inline">•</span>
+            <a href="mailto:lukenelmes@yahoo.co.uk" className="hover:text-teal-400 transition-colors">lukenelmes@yahoo.co.uk</a>
+            <span className="hidden sm:inline">•</span>
+            <a href="mailto:benarkus@outlook.com" className="hover:text-teal-400 transition-colors">benarkus@outlook.com</a>
           </div>
         </div>
       </section>
@@ -552,7 +697,7 @@ const FlipWebsite = () => {
             <a href="#" className="hover:text-teal-400 transition-colors duration-300">Privacy Policy</a>
             <a href="#" className="hover:text-teal-400 transition-colors duration-300">Terms of Service</a>
             <a href="#" className="hover:text-teal-400 transition-colors duration-300">Support</a>
-            <a href="#" className="hover:text-teal-400 transition-colors duration-300">Contact</a>
+            <button onClick={() => scrollToSection('contact')} className="hover:text-teal-400 transition-colors duration-300">Contact</button>
           </div>
         </div>
       </footer>
