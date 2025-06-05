@@ -198,10 +198,15 @@ module.exports = {
     'flex-col',
     'select-none',
     '-bottom-16',
+    '-bottom-14',
     'left-1/2',
     'transform',
     '-translate-x-1/2',
     'opacity-60',
-    'mt-1'
+    'opacity-75',
+    'mt-1',
+    'overflow-hidden',
+    'text-red-300',
+    'transition-colors'
   ],
 } 

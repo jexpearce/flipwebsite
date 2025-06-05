@@ -90,63 +90,48 @@ const FlipWebsite = () => {
 
   const FlipLogo = () => {
     const getLetterTransform = (index, delay = 0) => {
-      const letterProgress = Math.max(0, Math.min(1, (scrollProgress - delay) * 2));
-      const rotateX = (1 - letterProgress) * 180;
+      const letterProgress = Math.max(0, Math.min(1, (scrollProgress - delay) * 3));
+      const translateY = (1 - letterProgress) * 120; // Start further down for more dramatic effect
+      const opacity = letterProgress;
+      
       return {
-        transform: `perspective(1000px) rotateX(${rotateX}deg)`,
-        transformStyle: 'preserve-3d',
-        transformOrigin: 'center center',
+        transform: `translateY(${translateY}px)`,
+        opacity: opacity,
+        transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
       };
     };
 
     const letters = ['F', 'L', '!', 'P'];
-    const flippedLetters = ['Ⅎ', '˥', '¡', 'Ԁ'];
 
     return (
-      <h1 className="font-black tracking-tight mb-6 relative select-none" style={{
-        fontSize: 'clamp(4rem, 12vw, 12rem)',
-        lineHeight: '0.9',
+      <div className="relative mb-6" style={{
+        height: 'clamp(4rem, 12vw, 12rem)', // Fixed height to prevent layout shift
       }}>
-        {letters.map((letter, index) => (
-          <span
-            key={index}
-            className="inline-block relative"
-            style={getLetterTransform(index, index * 0.05)}
-          >
-            {/* Front face (normal letters) */}
+        <h1 className="font-black tracking-tight absolute inset-0 select-none overflow-hidden flex items-center justify-center" style={{
+          fontSize: 'clamp(4rem, 12vw, 12rem)',
+          lineHeight: '0.9',
+        }}>
+          {letters.map((letter, index) => (
             <span
-              className="absolute inset-0 text-transparent bg-clip-text"
+              key={index}
+              className="inline-block text-transparent bg-clip-text"
               style={{
+                ...getLetterTransform(index, index * 0.1),
                 background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
-                backfaceVisibility: 'hidden',
-                transform: 'rotateX(0deg)',
               }}
             >
               {letter}
             </span>
-            {/* Back face (flipped letters) */}
-            <span
-              className="text-transparent bg-clip-text"
-              style={{
-                background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                backfaceVisibility: 'hidden',
-                transform: 'rotateX(180deg)',
-              }}
-            >
-              {flippedLetters[index]}
-            </span>
-          </span>
-        ))}
-      </h1>
+          ))}
+        </h1>
+      </div>
     );
   };
 
   const FlipPhone = () => {
-    const phoneRotation = scrollProgress * 180;
+    const phoneRotation = scrollProgress * 180; // This will flip from 0° (face-up) to 180° (face-down)
     
     return (
       <div className="relative">
@@ -163,37 +148,37 @@ const FlipWebsite = () => {
             className="absolute inset-3 rounded-[2.5rem] flex items-center justify-center overflow-hidden"
             style={{
               background: scrollProgress < 1 
-                ? 'linear-gradient(to bottom right, #374151, #1f2937)' // Face up (gray/inactive)
-                : 'linear-gradient(to bottom right, #7c3aed, #6d28d9, #581c87)', // Face down (purple/active)
+                ? 'linear-gradient(to bottom right, #7c3aed, #6d28d9, #581c87)' // Face up (purple/active - shows notifications, distractions)
+                : 'linear-gradient(to bottom right, #374151, #1f2937)', // Face down (gray/focused - blocking distractions)
             }}
           >
             <div className="text-center">
               <div className="text-white text-xl md:text-2xl font-black mb-2">FL!P</div>
               <div className={`text-xs md:text-sm font-semibold tracking-wide transition-colors duration-500 ${
-                scrollProgress < 1 ? 'text-gray-400' : 'text-teal-300'
+                scrollProgress < 1 ? 'text-red-300' : 'text-teal-300'
               }`}>
-                {scrollProgress < 1 ? 'INACTIVE' : 'ACTIVE'}
+                {scrollProgress < 1 ? 'DISTRACTED' : 'FOCUSED'}
               </div>
             </div>
             <div 
               className="absolute inset-0 transition-opacity duration-500"
               style={{
                 background: scrollProgress < 1 
-                  ? 'rgba(75, 85, 99, 0.2)' 
-                  : 'linear-gradient(to bottom right, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2))',
-                opacity: scrollProgress < 1 ? 0.5 : 1,
+                  ? 'linear-gradient(to bottom right, rgba(248, 113, 113, 0.3), rgba(251, 146, 60, 0.2))' // Red/orange overlay for distractions
+                  : 'linear-gradient(to bottom right, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2))', // Blue/purple overlay for focus
+                opacity: scrollProgress < 1 ? 0.8 : 1,
               }}
             />
           </div>
         </div>
         
-        {/* Scroll hint - only show when flip hasn't completed */}
+        {/* Improved scroll hint - less jarring */}
         {!flipComplete && (
-          <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-center">
-            <div className="text-teal-400 text-sm font-medium animate-bounce">
-              Scroll to flip
+          <div className="absolute -bottom-14 left-1/2 transform -translate-x-1/2 text-center">
+            <div className="text-teal-400 text-sm font-medium opacity-75">
+              Scroll down
             </div>
-            <div className="text-teal-300 text-xs mt-1 opacity-60">
+            <div className="text-teal-300 text-lg mt-1 animate-pulse">
               ↓
             </div>
           </div>
@@ -286,7 +271,7 @@ const FlipWebsite = () => {
               The productivity app that doesn't mess around
             </h2>
             <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Real motion tracking. Real results.
+              Face up = distracted. Face down = focused.
             </p>
           </div>
 
