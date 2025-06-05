@@ -705,7 +705,6 @@ const FlipWebsite = () => {
               }}
             >
               <div className="text-teal-400 text-2xl mb-4 font-bold">Jex</div>
-              <h3 className="text-lg font-medium text-white mb-2">Lead Developer</h3>
               <p className="text-slate-300 text-sm">jex@jajajeev.com</p>
             </a>
 
@@ -717,7 +716,6 @@ const FlipWebsite = () => {
               }}
             >
               <div className="text-purple-400 text-2xl mb-4 font-bold">Luke</div>
-              <h3 className="text-lg font-medium text-white mb-2">Co-Founder</h3>
               <p className="text-slate-300 text-sm">lukenelmes@yahoo.co.uk</p>
             </a>
 
@@ -729,7 +727,6 @@ const FlipWebsite = () => {
               }}
             >
               <div className="text-blue-400 text-2xl mb-4 font-bold">Ben</div>
-              <h3 className="text-lg font-medium text-white mb-2">Co-Founder</h3>
               <p className="text-slate-300 text-sm">benarkus@outlook.com</p>
             </a>
           </div>
@@ -794,11 +791,6 @@ const FlipWebsite = () => {
           <p className="text-slate-400 mb-8">
             The productivity app that doesn't mess around.
           </p>
-          <div className="flex justify-center space-x-8 text-slate-400">
-            <a href="#" className="hover:text-teal-400 transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="hover:text-teal-400 transition-colors duration-300">Terms of Service</a>
-            <a href="#" className="hover:text-teal-400 transition-colors duration-300">Support</a>
-          </div>
         </div>
       </footer>
     </div>
