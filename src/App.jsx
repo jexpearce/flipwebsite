@@ -356,16 +356,16 @@ const FlipWebsite = () => {
           {/* Student-Made Stats */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center group cursor-pointer">
-              <div className="text-4xl font-black text-teal-400 mb-3 group-hover:scale-110 transition-transform duration-300">🎓</div>
-              <div className="text-slate-400 text-base font-medium">Student Made</div>
-            </div>
-            <div className="text-center group cursor-pointer">
-              <div className="text-4xl font-black text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300">🏫</div>
+              <div className="text-xl font-bold text-teal-400 mb-3 group-hover:scale-110 transition-transform duration-300">Student Made</div>
               <div className="text-slate-400 text-base font-medium">Durham University</div>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-4xl font-black text-orange-400 mb-3 group-hover:scale-110 transition-transform duration-300">💪</div>
-              <div className="text-slate-400 text-base font-medium">Built for Real Results</div>
+              <div className="text-xl font-bold text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300">Built for Students</div>
+              <div className="text-slate-400 text-base font-medium">By Students</div>
+            </div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-xl font-bold text-orange-400 mb-3 group-hover:scale-110 transition-transform duration-300">Real Results</div>
+              <div className="text-slate-400 text-base font-medium">Proven Effective</div>
             </div>
           </div>
         </div>
@@ -704,8 +704,8 @@ const FlipWebsite = () => {
                 background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
               }}
             >
-              <div className="text-teal-400 text-3xl mb-4">📧</div>
-              <h3 className="text-xl font-bold text-white mb-2">Jex</h3>
+              <div className="text-teal-400 text-2xl mb-4 font-bold">Jex</div>
+              <h3 className="text-lg font-medium text-white mb-2">Lead Developer</h3>
               <p className="text-slate-300 text-sm">jex@jajajeev.com</p>
             </a>
 
@@ -716,8 +716,8 @@ const FlipWebsite = () => {
                 background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
               }}
             >
-              <div className="text-purple-400 text-3xl mb-4">✉️</div>
-              <h3 className="text-xl font-bold text-white mb-2">Luke</h3>
+              <div className="text-purple-400 text-2xl mb-4 font-bold">Luke</div>
+              <h3 className="text-lg font-medium text-white mb-2">Co-Founder</h3>
               <p className="text-slate-300 text-sm">lukenelmes@yahoo.co.uk</p>
             </a>
 
@@ -728,8 +728,8 @@ const FlipWebsite = () => {
                 background: 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
               }}
             >
-              <div className="text-blue-400 text-3xl mb-4">💌</div>
-              <h3 className="text-xl font-bold text-white mb-2">Ben</h3>
+              <div className="text-blue-400 text-2xl mb-4 font-bold">Ben</div>
+              <h3 className="text-lg font-medium text-white mb-2">Co-Founder</h3>
               <p className="text-slate-300 text-sm">benarkus@outlook.com</p>
             </a>
           </div>
@@ -746,7 +746,7 @@ const FlipWebsite = () => {
               }}
             >
               <span className="text-slate-300 group-hover:text-teal-400 transition-colors duration-300 font-medium">
-                🔒 Privacy Policy
+                Privacy Policy
               </span>
             </a>
 
@@ -758,7 +758,7 @@ const FlipWebsite = () => {
               }}
             >
               <span className="text-slate-300 group-hover:text-purple-400 transition-colors duration-300 font-medium">
-                📋 Terms of Service
+                Terms of Service
               </span>
             </a>
 
@@ -770,7 +770,7 @@ const FlipWebsite = () => {
               }}
             >
               <span className="text-slate-300 group-hover:text-blue-400 transition-colors duration-300 font-medium">
-                💬 Support
+                Support
               </span>
             </a>
           </div>
