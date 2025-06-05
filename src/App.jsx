@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+console.log("FlipWebsite loaded");
 
 const FlipWebsite = () => {
   const [isVisible, setIsVisible] = useState({});
