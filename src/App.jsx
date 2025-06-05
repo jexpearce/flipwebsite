@@ -83,8 +83,8 @@ const FlipWebsite = () => {
     <header className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-slate-700/30" style={{
       background: 'rgba(15, 23, 42, 0.8)',
     }}>
-      <nav className="max-w-7xl mx-auto px-6 py-2 md:py-4 flex justify-between items-center">
-        <div className="text-xl md:text-2xl font-bold text-transparent bg-clip-text" style={{
+      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="text-2xl font-bold text-transparent bg-clip-text" style={{
           background: 'linear-gradient(to right, #ffffff, #38bdf8)',
           WebkitBackgroundClip: 'text',
           backgroundClip: 'text',
@@ -123,8 +123,9 @@ const FlipWebsite = () => {
         }}>
           <div className="px-6 py-4 space-y-4">
             <button onClick={() => scrollToSection('hero')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Home</button>
-            <button onClick={() => scrollToSection('features')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Features</button>
             <button onClick={() => scrollToSection('philosophy')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Ethos</button>
+            <button onClick={() => scrollToSection('features')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Features</button>
+            <button onClick={() => scrollToSection('screenshots')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Screenshots</button>
             <button onClick={() => scrollToSection('technical')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">About</button>
             <button onClick={() => scrollToSection('cta')} className="block w-full text-left text-slate-300 hover:text-teal-400 transition-colors py-2">Download</button>
           </div>
@@ -307,7 +308,7 @@ const FlipWebsite = () => {
       <FloatingOrb size="220px" top="40%" left="5%" delay="1.5s" color1="#06B6D4" color2="#8B5CF6" />
 
       {/* Hero Section with Flip Animation */}
-      <section ref={heroRef} id="hero" className="min-h-screen flex items-center justify-center relative px-6 pt-16 md:pt-20">
+      <section ref={heroRef} id="hero" className="min-h-screen flex items-center justify-center relative px-6 pt-20">
         <div className="max-w-7xl mx-auto text-center">
           {/* Flip Logo */}
           <div className="mb-8">
@@ -329,28 +330,24 @@ const FlipWebsite = () => {
             <FlipPhone />
           </div>
 
-          {/* Enhanced CTA Button */}
+          {/* Enhanced CTA Button - Much Brighter */}
           <div className="mb-8">
             <a 
               href="https://apps.apple.com/us/app/fl-p/id6741734983"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-block px-12 py-6 rounded-3xl text-xl font-bold transition-all duration-500 transform hover:scale-110 shadow-2xl"
+              className="group relative inline-block px-12 py-6 rounded-3xl text-xl font-bold transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-cyan-400/40"
               style={{
-                background: 'linear-gradient(to right, #14b8a6, #2563eb, #7c3aed)',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'linear-gradient(to right, #0d9488, #1d4ed8, #6d28d9)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'linear-gradient(to right, #14b8a6, #2563eb, #7c3aed)';
+                background: 'linear-gradient(45deg, #00d4ff, #0099ff, #0066ff, #3333ff)',
+                boxShadow: '0 0 30px rgba(0, 212, 255, 0.5), 0 0 60px rgba(0, 153, 255, 0.3)',
               }}
             >
-              <span className="relative z-10">Download on App Store</span>
+              <span className="relative z-10 text-white font-black">Download on App Store</span>
               <div 
-                className="absolute inset-0 rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                  background: 'linear-gradient(to right, #0d9488, #1d4ed8, #6d28d9)',
+                  background: 'linear-gradient(45deg, #00ffff, #00ccff, #0099ff, #0066ff)',
+                  filter: 'blur(8px)',
                 }}
               />
             </a>
@@ -361,72 +358,6 @@ const FlipWebsite = () => {
             <StatCard number="40%" label="Productivity Increase" color="text-teal-400" />
             <StatCard number="10s" label="Flip Back Timer" color="text-purple-400" />
             <StatCard number="0%" label="Tolerance for BS" color="text-orange-400" />
-          </div>
-        </div>
-      </section>
-
-      {/* App Screenshots Section */}
-      <section id="screenshots" className="py-24 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 
-              className="font-bold mb-8 text-transparent bg-clip-text"
-              style={{
-                fontSize: 'clamp(3rem, 8vw, 6rem)',
-                background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-              }}
-            >
-              See FL!P in Action
-            </h2>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Real screenshots from the iOS app
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-teal-400/50">
-              <div className="relative overflow-hidden rounded-2xl">
-                <img 
-                  src="/app-profile-screen.png" 
-                  alt="FL!P Profile Screen"
-                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Your Profile</h3>
-                <p className="text-slate-300">Track your discipline rank and weekly stats</p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-purple-400/50">
-              <div className="relative overflow-hidden rounded-2xl">
-                <img 
-                  src="/app-timer-screen.png" 
-                  alt="FL!P Timer Screen"
-                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Set Focus Time</h3>
-                <p className="text-slate-300">Choose your session length and begin</p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-blue-400/50">
-              <div className="relative overflow-hidden rounded-2xl">
-                <img 
-                  src="/app-timer-screen-2.png" 
-                  alt="FL!P Active Session"
-                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Active Session</h3>
-                <p className="text-slate-300">Phone face-down, focus locked in</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -559,6 +490,72 @@ const FlipWebsite = () => {
         </div>
       </section>
 
+      {/* App Screenshots Section */}
+      <section id="screenshots" className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 
+              className="font-bold mb-8 text-transparent bg-clip-text"
+              style={{
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                background: 'linear-gradient(to right, #ffffff, #38bdf8, #a78bfa)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+              }}
+            >
+              See FL!P in Action
+            </h2>
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+              Real screenshots from the iOS app
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-teal-400/50">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="/app-profile-screen.png" 
+                  alt="FL!P Profile Screen"
+                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Your Profile</h3>
+                <p className="text-slate-300">Track your discipline rank and weekly stats</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-purple-400/50">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="/app-home-screen.jpg" 
+                  alt="FL!P Home Screen"
+                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Home Screen</h3>
+                <p className="text-slate-300">Your focus dashboard and timer controls</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-4 hover:scale-105 transition-all duration-500 hover:border-blue-400/50">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="/app-leaderboard-screen.png" 
+                  alt="FL!P University Leaderboard"
+                  className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">University Leaderboard</h3>
+                <p className="text-slate-300">Compete with classmates and climb the rankings</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Technical Features */}
       <section id="technical" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
@@ -625,18 +622,20 @@ const FlipWebsite = () => {
               href="https://apps.apple.com/us/app/fl-p/id6741734983"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-block px-10 py-5 rounded-3xl text-lg font-bold transition-all duration-500 transform hover:scale-110 shadow-2xl"
+              className="group relative inline-block px-10 py-5 rounded-3xl text-lg font-bold transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-cyan-400/40"
               style={{
-                background: 'linear-gradient(to right, #14b8a6, #2563eb, #7c3aed)',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'linear-gradient(to right, #0d9488, #1d4ed8, #6d28d9)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'linear-gradient(to right, #14b8a6, #2563eb, #7c3aed)';
+                background: 'linear-gradient(45deg, #00d4ff, #0099ff, #0066ff, #3333ff)',
+                boxShadow: '0 0 30px rgba(0, 212, 255, 0.5), 0 0 60px rgba(0, 153, 255, 0.3)',
               }}
             >
-              <span className="relative z-10">Download FL!P Now</span>
+              <span className="relative z-10 text-white font-black">Download FL!P Now</span>
+              <div 
+                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'linear-gradient(45deg, #00ffff, #00ccff, #0099ff, #0066ff)',
+                  filter: 'blur(8px)',
+                }}
+              />
             </a>
             
             <button 
@@ -697,7 +696,6 @@ const FlipWebsite = () => {
             <a href="#" className="hover:text-teal-400 transition-colors duration-300">Privacy Policy</a>
             <a href="#" className="hover:text-teal-400 transition-colors duration-300">Terms of Service</a>
             <a href="#" className="hover:text-teal-400 transition-colors duration-300">Support</a>
-            <button onClick={() => scrollToSection('contact')} className="hover:text-teal-400 transition-colors duration-300">Contact</button>
           </div>
         </div>
       </footer>
