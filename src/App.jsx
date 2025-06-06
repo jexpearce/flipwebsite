@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FaMobile, FaTrophy, FaPause, FaChartLine, FaLock, FaUniversity, FaApple, FaUsers } from 'react-icons/fa';
 
 const FlipWebsite = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -176,13 +177,11 @@ const FlipWebsite = () => {
           {letters.map((letter, index) => (
             <span
               key={index}
-              className="inline-block text-transparent bg-clip-text animate-pulse"
+              className="inline-block text-transparent bg-clip-text"
               style={{
-                background: 'linear-gradient(45deg, #ffffff, #38bdf8, #a78bfa, #10b981, #f59e0b)',
+                background: 'linear-gradient(45deg, #ffffff, #38bdf8, #a78bfa)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
-                animationDelay: `${index * 0.2}s`,
-                animationDuration: '3s',
               }}
             >
               {letter}
@@ -289,6 +288,18 @@ const FlipWebsite = () => {
       return colorMap[accent] || 'bg-cyan-400 shadow-cyan-400/50';
     };
 
+    const getIconColor = (accent) => {
+      const colorMap = {
+        red: 'text-red-400',
+        emerald: 'text-emerald-400',
+        blue: 'text-blue-400',
+        purple: 'text-purple-400',
+        orange: 'text-orange-400',
+        pink: 'text-pink-400'
+      };
+      return colorMap[accent] || 'text-cyan-400';
+    };
+
     return (
       <div 
         className={`group relative overflow-hidden rounded-3xl border border-slate-700/30 backdrop-blur-xl p-8 hover:scale-105 transition-all duration-700 hover:shadow-2xl ${getAccentClasses(accent)}`}
@@ -300,7 +311,7 @@ const FlipWebsite = () => {
           className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700`} 
         />
         <div className="relative z-10">
-          <div className="text-4xl mb-4">{icon}</div>
+          <div className={`text-4xl mb-4 ${getIconColor(accent)}`}>{icon}</div>
           <h3 className="text-3xl font-bold text-white mb-6 group-hover:text-cyan-300 transition-colors duration-500">{title}</h3>
           <p className="text-slate-300 mb-8 leading-relaxed text-lg">{description}</p>
           <ul className="space-y-4">
@@ -382,7 +393,7 @@ const FlipWebsite = () => {
           </div>
 
           {/* Enhanced Stats with more colors */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-20">
             <div className="text-center group cursor-pointer">
               <div className="text-xl font-bold text-emerald-400 mb-3 group-hover:scale-110 transition-transform duration-300">Student Made</div>
               <div className="text-slate-400 text-base font-medium">Durham University</div>
@@ -473,7 +484,7 @@ const FlipWebsite = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
             <FeatureCard
-              icon="📱"
+              icon={<FaMobile />}
               title="Real Motion Tracking"
               description="Your phone MUST stay face-down. No cheating, no exceptions."
               gradient="from-red-500/20 to-orange-500/20"
@@ -487,7 +498,7 @@ const FlipWebsite = () => {
             />
 
             <FeatureCard
-              icon="🏆"
+              icon={<FaTrophy />}
               title="Competitive Edge"
               description="See when your friends fail. They see when you do too."
               gradient="from-emerald-500/20 to-green-500/20"
@@ -501,7 +512,7 @@ const FlipWebsite = () => {
             />
 
             <FeatureCard
-              icon="⏸️"
+              icon={<FaPause />}
               title="Strategic Pause System"
               description="Limited pauses per session. Strategic pauses for emergencies only."
               gradient="from-blue-500/20 to-cyan-500/20"
@@ -515,7 +526,7 @@ const FlipWebsite = () => {
             />
 
             <FeatureCard
-              icon="📊"
+              icon={<FaChartLine />}
               title="Scoring & Streaks"
               description="Climb the ranks with our unforgiving ranking system."
               gradient="from-purple-500/20 to-violet-500/20"
@@ -614,10 +625,10 @@ const FlipWebsite = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: 'Privacy First', desc: 'Motion data stays on your device. Period.', color: 'text-cyan-300', hoverColor: 'hover:border-cyan-400/50' },
-              { title: 'University System', desc: 'Pick your school, compete with classmates', color: 'text-purple-300', hoverColor: 'hover:border-purple-400/50' },
-              { title: 'iOS Exclusive', desc: 'Optimized for iOS hardware and sensors', color: 'text-blue-300', hoverColor: 'hover:border-blue-400/50' },
-              { title: 'Social Features', desc: 'Connect without being pushy or distracting', color: 'text-orange-300', hoverColor: 'hover:border-orange-400/50' }
+              { icon: <FaLock />, title: 'Privacy First', desc: 'Motion data stays on your device. Period.', color: 'text-cyan-300', hoverColor: 'hover:border-cyan-400/50' },
+              { icon: <FaUniversity />, title: 'University System', desc: 'Pick your school, compete with classmates', color: 'text-purple-300', hoverColor: 'hover:border-purple-400/50' },
+              { icon: <FaApple />, title: 'iOS Exclusive', desc: 'Optimized for iOS hardware and sensors', color: 'text-blue-300', hoverColor: 'hover:border-blue-400/50' },
+              { icon: <FaUsers />, title: 'Social Features', desc: 'Connect without being pushy or distracting', color: 'text-orange-300', hoverColor: 'hover:border-orange-400/50' }
             ].map((item, index) => (
               <div 
                 key={index}
@@ -626,6 +637,7 @@ const FlipWebsite = () => {
                   background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
                 }}
               >
+                <div className={`text-3xl mb-4 ${item.color}`}>{item.icon}</div>
                 <h3 className={`font-bold text-xl mb-4 ${item.color}`}>{item.title}</h3>
                 <p className="text-slate-300">{item.desc}</p>
               </div>
