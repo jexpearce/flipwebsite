@@ -787,14 +787,16 @@ const FlipWebsite = () => {
             </a>
 
             <a 
-              href="#"
+              href="https://www.linkedin.com/company/fl-p/?viewAsMember=true"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-8 py-4 rounded-2xl border border-slate-700/40 backdrop-blur-xl hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/20"
               style={{
                 background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6))',
               }}
             >
               <span className="text-slate-300 group-hover:text-purple-400 transition-colors duration-300 font-medium">
-                Terms of Service
+                LinkedIn
               </span>
             </a>
 
